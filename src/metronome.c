@@ -9,7 +9,7 @@
 #define INCREMENT 2
 #define INITIAL 128
 #define TEMPO_KEY 0
-#define FORCE_COLOR true
+#define FORCE_COLOR false
 
 static Window *main_window;
 static TextLayer *status_layer;
