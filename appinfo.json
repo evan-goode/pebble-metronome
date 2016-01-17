@@ -1,0 +1,22 @@
+{
+    "appKeys": {},
+    "capabilities": [
+        ""
+    ],
+    "companyName": "Evan Goode",
+    "longName": "Metronome",
+    "projectType": "native",
+    "resources": {
+        "media": []
+    },
+    "sdkVersion": "3",
+    "shortName": "Metronome",
+    "targetPlatforms": [
+        "chalk"
+    ],
+    "uuid": "5d11f957-e0bd-4afa-9490-7cce4bf1c754",
+    "versionLabel": "1.0",
+    "watchapp": {
+        "watchface": false
+    }
+}
