@@ -19,6 +19,7 @@ static AppTimer *timer;
 static int tempo;
 static char tempo_string [4];
 static bool state;
+static bool color;
 
 static const VibePattern vibe_short = {
   .durations = (uint32_t []) {SHORT},
@@ -37,6 +38,19 @@ static void metronome_loop() {
   }
 }
 
+static bool get_color() {
+  switch(watch_info_get_model()) {
+    case WATCH_INFO_MODEL_PEBBLE_ORIGINAL:
+      return false;
+    case WATCH_INFO_MODEL_PEBBLE_STEEL:
+      return false;
+    case WATCH_INFO_MODEL_UNKNOWN:
+      return false;
+    default:
+      return true;
+  }
+}
+
 static void set_tempo(int new) {
   snprintf(tempo_string, sizeof tempo_string, "%d", new);
   text_layer_set_text(output_layer, tempo_string);
@@ -49,14 +63,12 @@ static void set_tempo(int new) {
 }
 static void set_state(bool new) {
   state = new;
-  if (state) {
-    text_layer_set_text(status_layer, "ON");
-    text_layer_set_text_color(status_layer, GColorGreen); 
+  text_layer_set_text(status_layer, (state ? "ON" : "OFF"));
+  if (color) {
+    text_layer_set_text_color(status_layer, (state ? GColorGreen : GColorRed));
   } else {
-    text_layer_set_text(status_layer, "OFF");
-    text_layer_set_text_color(status_layer, GColorRed);
-    vibes_cancel();
-  } 
+    text_layer_set_text_color(status_layer, GColorWhite);
+  }
 }
 
 static void up_click_handler(ClickRecognizerRef recognizer, void *context) {
@@ -111,6 +123,7 @@ static void main_window_load(Window *window) {
     set_tempo(INITIAL);
   }
   
+  color = get_color();
   set_state(true);
   metronome_loop();
 }

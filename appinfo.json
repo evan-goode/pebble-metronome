@@ -12,6 +12,8 @@
     "sdkVersion": "3",
     "shortName": "Metronome",
     "targetPlatforms": [
+        "aplite",
+        "basalt",
         "chalk"
     ],
     "uuid": "5d11f957-e0bd-4afa-9490-7cce4bf1c754",
