@@ -9,6 +9,7 @@
 #define INCREMENT 2
 #define INITIAL 128
 #define TEMPO_KEY 0
+#define FORCE_COLOR true
 
 static Window *main_window;
 static TextLayer *status_layer;
@@ -124,6 +125,9 @@ static void main_window_load(Window *window) {
   }
   
   color = get_color();
+  if (FORCE_COLOR) {
+    color = true;
+  }
   set_state(true);
   metronome_loop();
 }
